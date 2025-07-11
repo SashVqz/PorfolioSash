@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Ingeniero de Software & Físico Computacional</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <div class="loader">
+            <div class="loader-ring"></div>
+            <p>Cargando Portfolio...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Álvaro Vázquez</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Inicio</a></li>
+                <li><a href="#about" class="nav-link">Sobre Mí</a></li>
+                <li><a href="#projects" class="nav-link">Proyectos</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">Álvaro Vázquez</span>
+                    <span class="title-line">Ingeniera de Software y Física</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Especializado en Machine/Deep Learning, Visión por Computador y simulaciones computacionales avanzadas
+                </p>
+
+                <!-- <p class="hero-description">
+                    ...
+                </p> -->
+                
+                <!-- <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">Ver Proyectos</a>
+                    <a href="#contact" class="btn btn-secondary">Contactar</a>
+                </div> -->
+                
+                <div class="social-links">
+                    <a href="https://github.com/SashVqz" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/alvarovqz/" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="youtube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Research Gate">
+                        <i class="fab fa-researchgate"></i> 
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sobre Mí</h2>
+                <p class="section-subtitle">Apasión por la ciencia y la innovación tecnológica</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text-single"> <div class="about-card">
+                        <div class="card-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Mi formación académica y como oriento mis proyectos</h3>
+                        <p>
+                            Mi base sólida la construí en la U-tad, donde me formo como ingenierío del software y físico computacional. Pero, sinceramente, es en mis proyectos personales donde realmente doy rienda suelta a mi pasión. Es mi laboratorio particular para perfeccionar mis habilidades, descubrir nuevas herramientas y lenguajes, y sumergirme en los temas que me apasionan y me inspiran.
+                        </p>
+                    </div>
+                </div>
+                <div class="about-specialization"> <h3>Áreas de Especialización</h3>
+                    <div class="specialization-grid"> <div class="about-card">
+                            <div class="card-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3>Inteligencia Artificial</h3>
+                            <p>
+                                Me especializo en machine learning, deep learning y visión por computador, y me entusiasma aplicar estos conocimientos en áreas con un impacto tangible. Mi trabajo en IA lo oriento especialmente hacia la medicina, el análisis de mercados bursátiles y la ciencia en general.
+                            </p>
+                        </div>
+                        <div class="about-card">
+                            <div class="card-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <h3>Programación gráfica y Simulación de sistemas físicos</h3>
+                            <p>
+                                Además, me apasiona la programación gráfica y la simulación de sistemas físicos. Me encanta construir desde aplicaciones de realidad virtual (VR) inmersivas hasta simulaciones físicas a bajo nivel utilizando por ejemplo CUDA (PhysX o DirectX), OpenGL o Vulkan. También me siento cómodo trabajando a un nivel más alto con herramientas como Unity o Houdini. Esta versatilidad me permite no solo visualizar lo que estudio en física, sino también crear simulaciones VFX.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Proyectos</h2>
+                <p class="section-subtitle">Una selección de mis trabajos en diferentes áreas de especialización</p>
+            </div>
+            
+            <!-- Project Categories Filter -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="graphics-vfx">Programación Gráfica y VFX</button>
+                <button class="filter-btn" data-filter="data-ai">Data Science y AI</button>
+                <button class="filter-btn" data-filter="algorithms-numerical">Algoritmia y Métodos Numéricos</button>
+                <button class="filter-btn" data-filter="web3-blockchain">Web3 y Blockchain</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- VFX Projects -->
+                <div class="project-card" data-category="graphics-vfx">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500&h=300&fit=crop" alt="Proyecto Simulación 1">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="Ver código">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link" aria-label="Ver demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category-tag vfx">programación gráfica</div>
+                        <h3 class="project-title">Sistema de Partículas Avanzado</h3>
+                        <p class="project-description">Sistema de simulación de partículas para efectos visuales cinematográficos con renderizado en tiempo real.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">OpenGL</span>
+                            <span class="tech-tag">GLSL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulation Projects -->
+                <div class="project-card" data-category="data-ai">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500&h=300&fit=crop" alt="Proyecto Simulación 1">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="Ver código">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link" aria-label="Ver demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category-tag simulation">Machine Learning</div>
+                        <h3 class="project-title">Simulador de Fluidos CFD</h3>
+                        <p class="project-description">Simulador de dinámica de fluidos computacional para análisis de comportamiento en sistemas complejos.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">NumPy</span>
+                            <span class="tech-tag">...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphics Projects -->
+                <div class="project-card" data-category="algorithms-numerical">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500&h=300&fit=crop" alt="Proyecto Simulación 1">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="Ver código">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link" aria-label="Ver demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category-tag graphics">Algoritmia</div>
+                        <h3 class="project-title">Motor de Renderizado PBR</h3>
+                        <p class="project-description">Motor de renderizado basado en física con iluminación global y materiales realistas.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">C++</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ... -->
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contacto</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p>alvaro.vazquez.1716@gmail.com</p>
+                        <a href="mailto:alvaro.vazquez.1716@gmail.com" class="contact-link">Enviar email</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <h3>LinkedIn</h3>
+                        <p>Conecta conmigo</p>
+                        <a href="https://www.linkedin.com/in/alvarovqz/" class="contact-link">Ver perfil</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub</h3>
+                        <p>Revisa mis proyectos</p>
+                        <a href="https://github.com/SashVqz" class="contact-link">Ver repositorios</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Álvaro Vázquez</p>
+                <p>Portfolio de proyectos personales</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="script.js"></script></script>
+</body>
+</html>
