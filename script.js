@@ -1,55 +1,120 @@
 let currentTheme = 'light';
-let isMenuOpen = false; // Initialize isMenuOpen
-let currentFilter = 'all'; // Initialize currentFilter
+let currentLanguage = 'es';
+let isMenuOpen = false;
+let currentFilter = 'all';
 
-// Inicialización cuando el DOM está listo
+const translations = {
+    en: {
+        'loading': 'Loading Portfolio...',
+        'nav-home': 'Home',
+        'nav-about': 'About Me',
+        'nav-projects': 'Projects',
+        'hero-subtitle-line': 'Software Engineering & Physics',
+        'hero-description': 'Specialized in machine & deep learning, computer vision, and advanced computational simulations',
+        'about-title': 'About Me',
+        'about-subtitle': 'Passion for science and technological innovation',
+        'about-formation-title': 'My academic background and how I approach my projects',
+        'about-formation-text': 'Built my solid foundation at U-tad, studying software engineering and computational physics. But real talk, it\'s in my personal projects where I truly let my passion run wild. That\'s my personal lab to sharpen my skills, discover new tools and languages, and dive deep into the topics that fire me up and inspire me.',
+        'about-specialization-title': 'Areas of Specialization',
+        'about-ai-title': 'Artificial Intelligence',
+        'about-ai-text': 'I specialize in machine learning, deep learning, and computer vision, and I get hyped applying this knowledge in areas with real impact. My AI work is especially focused on medicine, stock market analysis, and science in general.',
+        'about-graphics-title': 'Graphics Programming',
+        'about-graphics-text': 'Plus, I\'m passionate about graphics programming and physical systems simulation. I love building everything from immersive VR applications to low-level physics simulations using CUDA (PhysX or DirectX), OpenGL, or Vulkan. I\'m also comfortable working at a higher level with tools like Unity or Houdini. This versatility lets me not only visualize what I study in physics but also create VFX simulations.',
+        'projects-title': 'Projects',
+        'projects-subtitle': 'A selection of my work across different areas of specialization',
+        'filter-all': 'All',
+        'filter-graphics': 'Graphics Programming & VFX',
+        'filter-ai': 'Data Science & AI',
+        'filter-algorithms': 'Algorithms & Numerical Methods',
+        'filter-web3': 'Web3 & Blockchain',
+        'project-cat-graphics': 'graphics programming',
+        'project-cat-ml': 'Machine Learning',
+        'project-cat-algorithms': 'Algorithms',
+        'project1-title': 'Advanced Particle System',
+        'project1-description': 'Particle simulation system for cinematic visual effects with real-time rendering.',
+        'project2-title': 'CFD Fluid Simulator',
+        'project2-description': 'Computational fluid dynamics simulator for behavior analysis in complex systems.',
+        'project3-title': 'PBR Rendering Engine',
+        'project3-description': 'Physics-based rendering engine with global illumination and realistic materials.',
+        'contact-title': 'Contact',
+        'contact-email-action': 'Send email',
+        'contact-linkedin-text': 'Connect with me',
+        'contact-linkedin-action': 'View profile',
+        'contact-github-text': 'Check out my projects',
+        'contact-github-action': 'View repositories',
+        'footer-text': 'Personal projects portfolio'
+    },
+    es: {
+        'loading': 'Cargando Portfolio...',
+        'nav-home': 'Inicio',
+        'nav-about': 'Sobre Mí',
+        'nav-projects': 'Proyectos',
+        'hero-subtitle-line': 'Ingeniería de Software y Física',
+        'hero-description': 'Especializado en machine y deep learning, visión por computador y simulaciones computacionales avanzadas',
+        'about-title': 'Sobre Mí',
+        'about-subtitle': 'Pasión por la ciencia y la innovación tecnológica',
+        'about-formation-title': 'Mi formación académica y cómo enfoco mis proyectos',
+        'about-formation-text': 'Mi base sólida la estoy construyendo en U-tad, donde estudio ingeniería de software y física computacional. Sin embargo, es en mis proyectos personales donde verdaderamente libero mi pasión. Estos proyectos son mi laboratorio particular para perfeccionar mis habilidades, explorar nuevas herramientas y lenguajes, y profundizar en los temas que realmente me motivan e inspiran.',
+        'about-specialization-title': 'Áreas de Especialización',
+        'about-ai-title': 'Inteligencia Artificial',
+        'about-ai-text': 'Me especializo en machine learning, deep learning y visión por computador, y me emociona aplicar este conocimiento en áreas con impacto real. Mi trabajo en IA se enfoca especialmente en medicina, análisis de mercados bursátiles y ciencia en general.',
+        'about-graphics-title': 'Programación Gráfica',
+        'about-graphics-text': 'Además, me apasiona la programación gráfica y la simulación de sistemas físicos. Me encanta construir desde aplicaciones VR inmersivas hasta simulaciones físicas a bajo nivel usando CUDA (PhysX o DirectX), OpenGL o Vulkan. También manejo herramientas de alto nivel como Unity o Houdini. Esta versatilidad me permite no solo visualizar lo que estudio en física, sino también crear simulaciones VFX.',
+        'projects-title': 'Proyectos',
+        'projects-subtitle': 'Una selección de mi trabajo en diferentes áreas de especialización',
+        'filter-all': 'Todos',
+        'filter-graphics': 'Programación Gráfica y VFX',
+        'filter-ai': 'Data Science e IA',
+        'filter-algorithms': 'Algoritmos y Métodos Numéricos',
+        'filter-web3': 'Web3 y Blockchain',
+        'project-cat-graphics': 'programación gráfica',
+        'project-cat-ml': 'Machine Learning',
+        'project-cat-algorithms': 'Algoritmos',
+        'project1-title': 'Sistema de Partículas Avanzado',
+        'project1-description': 'Sistema de simulación de partículas para efectos visuales cinematográficos con renderizado en tiempo real.',
+        'project2-title': 'Simulador de Fluidos CFD',
+        'project2-description': 'Simulador de dinámica de fluidos computacional para análisis de comportamiento en sistemas complejos.',
+        'project3-title': 'Motor de Renderizado PBR',
+        'project3-description': 'Motor de renderizado basado en física con iluminación global y materiales realistas.',
+        'contact-title': 'Contacto',
+        'contact-email-action': 'Enviar email',
+        'contact-linkedin-text': 'Conecta conmigo',
+        'contact-linkedin-action': 'Ver perfil',
+        'contact-github-text': 'Revisa mis proyectos',
+        'contact-github-action': 'Ver repositorios',
+        'footer-text': 'Portfolio de proyectos personales'
+    }
+};
+
+
 document.addEventListener('DOMContentLoaded', function() {
     initializePortfolio();
 });
 
-// Función principal de inicialización
 function initializePortfolio() {
-    // Inicializar tema antes que nada
     initializeTheme();
-    
-    // Ocultar loading después de 2 segundos
+    initializeLanguage();
     setTimeout(hideLoading, 2000);
     
-    // Inicializar navegación
     initializeNavigation();
-    
-    // Inicializar filtros de proyectos
     initializeProjectFilters();
-    
-    // Inicializar animaciones de scroll
     initializeScrollAnimations();
-    
-    // Inicializar smooth scroll
     initializeSmoothScroll();
-    
-    // Agregar event listeners
     addEventListeners();
 }
 
-// Función para inicializar el tema
 function initializeTheme() {
-    // Obtener tema guardado o usar preferencia del sistema
     const savedTheme = localStorage.getItem('portfolio-theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
     currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-    
-    // Aplicar tema
     applyTheme(currentTheme);
     
-    // Configurar botón de toggle
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
         updateThemeToggleIcon();
         themeToggle.addEventListener('click', toggleTheme);
     }
     
-    // Escuchar cambios en preferencias del sistema
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('portfolio-theme')) {
             currentTheme = e.matches ? 'dark' : 'light';
@@ -59,26 +124,49 @@ function initializeTheme() {
     });
 }
 
-// Función para aplicar el tema
+function initializeLanguage() {
+    const savedLanguage = localStorage.getItem('portfolio-language');
+    const browserLanguage = navigator.language.startsWith('en') ? 'en' : 'es';
+    currentLanguage = savedLanguage || browserLanguage;
+    applyLanguage(currentLanguage);
+    
+    const languageToggle = document.getElementById('language-toggle');
+    if (languageToggle) {
+        updateLanguageToggleText();
+        languageToggle.addEventListener('click', toggleLanguage);
+    }
+}
+
 function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     currentTheme = theme;
 }
 
-// Función para alternar tema
+function applyLanguage(language) {
+    currentLanguage = language;
+    document.documentElement.setAttribute('lang', language);
+    
+    const elementsToTranslate = document.querySelectorAll('[data-text]');
+    elementsToTranslate.forEach(element => {
+        const key = element.getAttribute('data-text');
+        if (translations[language] && translations[language][key]) {
+            element.textContent = translations[language][key];
+        }
+    });
+    
+    const titleTranslations = {
+        es: 'Portfolio - Ingeniero de Software & Físico Computacional',
+        en: 'Portfolio - Software Engineer & Computational Physicist'
+    };
+    
+    document.title = titleTranslations[language] || titleTranslations.es;
+}
+
 function toggleTheme() {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    // Aplicar nuevo tema
     applyTheme(newTheme);
-    
-    // Guardar preferencia
     localStorage.setItem('portfolio-theme', newTheme);
-    
-    // Actualizar icono
-    updateThemeToggleIcon();
-    
-    // Animación suave del botón
+    updateThemeToggleIcon(); 
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
         themeToggle.style.transform = 'scale(0.8) rotate(180deg)';
@@ -88,7 +176,21 @@ function toggleTheme() {
     }
 }
 
-// Función para actualizar el icono del toggle
+function toggleLanguage() {
+    const newLanguage = currentLanguage === 'es' ? 'en' : 'es';
+    applyLanguage(newLanguage);
+    localStorage.setItem('portfolio-language', newLanguage);
+    updateLanguageToggleText();
+    
+    const languageToggle = document.getElementById('language-toggle');
+    if (languageToggle) {
+        languageToggle.style.transform = 'scale(0.8) rotate(360deg)';
+        setTimeout(() => {
+            languageToggle.style.transform = 'scale(1) rotate(0deg)';
+        }, 150);
+    }
+}
+
 function updateThemeToggleIcon() {
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
@@ -99,27 +201,33 @@ function updateThemeToggleIcon() {
     }
 }
 
-// Función para ocultar pantalla de carga
+function updateLanguageToggleText() {
+    const languageToggle = document.getElementById('language-toggle');
+    if (languageToggle) {
+        const text = languageToggle.querySelector('.language-text');
+        if (text) {
+            text.textContent = currentLanguage === 'es' ? 'EN' : 'ES';
+        }
+    }
+}
+
 function hideLoading() {
     const loadingScreen = document.getElementById('loading');
     if (loadingScreen) {
         loadingScreen.classList.add('hidden');
         
-        // Remover elemento después de la transición
         setTimeout(() => {
             loadingScreen.remove();
         }, 500);
     }
 }
 
-// Inicializar navegación
 function initializeNavigation() {
     const navbar = document.querySelector('.navbar');
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
     
-    // Efecto scroll en navbar
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
             navbar.classList.add('scrolled');
@@ -127,22 +235,17 @@ function initializeNavigation() {
             navbar.classList.remove('scrolled');
         }
         
-        // Actualizar enlace activo basado en la sección visible
         updateActiveNavLink();
     });
     
-    // Hamburger menu toggle
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             isMenuOpen = !isMenuOpen;
             navMenu.classList.toggle('active');
-            
-            // Animar hamburger
             hamburger.classList.toggle('active');
         });
     }
     
-    // Cerrar menú al hacer click en un enlace
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
@@ -152,7 +255,6 @@ function initializeNavigation() {
     });
 }
 
-// Actualizar enlace activo en navegación
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -174,35 +276,26 @@ function updateActiveNavLink() {
     });
 }
 
-// Inicializar filtros de proyectos
 function initializeProjectFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
     
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             const filter = button.getAttribute('data-filter');
-            
-            // Actualizar botón activo
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-            
-            // Filtrar proyectos
             filterProjects(filter);
         });
     });
 }
 
-// Función para filtrar proyectos
 function filterProjects(filter) {
     const projectCards = document.querySelectorAll('.project-card');
     
     projectCards.forEach(card => {
         const category = card.getAttribute('data-category');
         
-        // Agregar clase de transición
         card.classList.add('filtering');
-        
         setTimeout(() => {
             if (filter === 'all' || category === filter) {
                 card.style.display = 'block';
@@ -216,7 +309,6 @@ function filterProjects(filter) {
                 }, 300);
             }
             
-            // Remover clase de transición
             setTimeout(() => {
                 card.classList.remove('filtering');
             }, 300);
@@ -226,7 +318,6 @@ function filterProjects(filter) {
     currentFilter = filter;
 }
 
-// Inicializar animaciones de scroll
 function initializeScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -241,7 +332,6 @@ function initializeScrollAnimations() {
         });
     }, observerOptions);
     
-    // Observar elementos que necesitan animación
     const animatedElements = document.querySelectorAll(
         '.about-card, .project-card, .contact-card'
     );
@@ -251,7 +341,6 @@ function initializeScrollAnimations() {
     });
 }
 
-// Inicializar smooth scroll
 function initializeSmoothScroll() {
     const links = document.querySelectorAll('a[href^="#"]');
     
@@ -274,57 +363,7 @@ function initializeSmoothScroll() {
     });
 }
 
-// Manejar envío de formulario
-function handleFormSubmit(event) { // Added event parameter
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    
-    // Validación básica
-    if (!name || !email || !subject || !message) {
-        showNotification('Por favor, completa todos los campos', 'error');
-        return;
-    }
-    
-    if (!isValidEmail(email)) {
-        showNotification('Por favor, introduce un email válido', 'error');
-        return;
-    }
-    
-    // Simular envío (aquí integrarías con tu backend)
-    const button = event.target;
-    const originalText = button.innerHTML;
-    
-    button.innerHTML = '<span>Enviando...</span><i class="fas fa-spinner fa-spin"></i>';
-    button.disabled = true;
-    
-    setTimeout(() => {
-        showNotification('¡Mensaje enviado correctamente!', 'success');
-        clearForm();
-        
-        button.innerHTML = originalText;
-        button.disabled = false;
-    }, 2000);
-}
-
-// Validar email
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-// Limpiar formulario
-function clearForm() {
-    document.getElementById('name').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('subject').value = '';
-    document.getElementById('message').value = '';
-}
-
-// Mostrar notificación
 function showNotification(message, type = 'info') {
-    // Crear elemento de notificación
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -334,7 +373,6 @@ function showNotification(message, type = 'info') {
         </button>
     `;
     
-    // Agregar estilos si no existen
     if (!document.getElementById('notification-styles')) {
         const styles = document.createElement('style');
         styles.id = 'notification-styles';
@@ -395,7 +433,6 @@ function showNotification(message, type = 'info') {
     
     document.body.appendChild(notification);
     
-    // Auto-remover después de 5 segundos
     setTimeout(() => {
         if (notification.parentElement) {
             notification.style.animation = 'slideInRight 0.3s ease reverse';
@@ -404,16 +441,11 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Agregar event listeners adicionales
 function addEventListeners() {
-    // Manejar redimensionamiento de ventana
     window.addEventListener('resize', handleWindowResize);
-    
-    // Manejar teclas del teclado
     document.addEventListener('keydown', handleKeyPress);
     
-    // Prevenir zoom en inputs en iOS
-    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    if (/iPad|iPhone/.test(navigator.userAgent)) {
         const inputs = document.querySelectorAll('input, textarea');
         inputs.forEach(input => {
             input.addEventListener('focus', () => {
@@ -423,29 +455,29 @@ function addEventListeners() {
     }
 }
 
-// Manejar redimensionamiento de ventana
 function handleWindowResize() {
-    // Cerrar menú móvil si se redimensiona a desktop
     if (window.innerWidth > 768 && isMenuOpen) {
         const navMenu = document.querySelector('.nav-menu');
         const hamburger = document.querySelector('.hamburger');
         
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-        isMenuOpen = false;
+        if (navMenu && hamburger) {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            isMenuOpen = false;
+        }
     }
 }
 
-// Manejar teclas del teclado
 function handleKeyPress(e) {
-    // Cerrar menú móvil con ESC
     if (e.key === 'Escape' && isMenuOpen) {
         const navMenu = document.querySelector('.nav-menu');
         const hamburger = document.querySelector('.hamburger');
         
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-        isMenuOpen = false;
+        if (navMenu && hamburger) {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            isMenuOpen = false;
+        }
     }
     
     // Toggle tema con Ctrl/Cmd + D
@@ -453,9 +485,14 @@ function handleKeyPress(e) {
         e.preventDefault();
         toggleTheme();
     }
+    
+    // Toggle idioma con Ctrl/Cmd + L
+    if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
+        e.preventDefault();
+        toggleLanguage();
+    }
 }
 
-// Función para carga lazy de imágenes
 function initializeLazyLoading() {
     const images = document.querySelectorAll('img[data-src]');
     
@@ -473,7 +510,6 @@ function initializeLazyLoading() {
     images.forEach(img => imageObserver.observe(img));
 }
 
-// Función para crear partículas animadas en el fondo
 function createParticleAnimation() {
     const canvas = document.createElement('canvas');
     canvas.id = 'particle-canvas';
@@ -531,9 +567,8 @@ function createParticleAnimation() {
     function drawParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Cambiar color según el tema
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        const particleColor = isDark ? '168, 85, 247' : '168, 85, 247';
+        const particleColor = '168, 85, 247';
         
         particles.forEach(particle => {
             ctx.beginPath();
@@ -542,7 +577,6 @@ function createParticleAnimation() {
             ctx.fill();
         });
         
-        // Conectar partículas cercanas
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
@@ -567,18 +601,15 @@ function createParticleAnimation() {
         animationId = requestAnimationFrame(animate);
     }
     
-    // Inicializar
     resizeCanvas();
     initParticles();
     animate();
     
-    // Manejar redimensionamiento
     window.addEventListener('resize', () => {
         resizeCanvas();
         initParticles();
     });
     
-    // Pausar animación cuando la pestaña no está visible
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             cancelAnimationFrame(animationId);
@@ -587,13 +618,11 @@ function createParticleAnimation() {
         }
     });
     
-    // Actualizar opacidad según el tema
     const updateCanvasOpacity = () => {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         canvas.style.opacity = isDark ? '0.4' : '0.3';
     };
     
-    // Observer para cambios de tema
     const observer = new MutationObserver(updateCanvasOpacity);
     observer.observe(document.documentElement, {
         attributes: true,
@@ -601,12 +630,18 @@ function createParticleAnimation() {
     });
 }
 
-// Función para efectos de typing en el hero
 function initializeTypingEffect() {
     const heroSubtitle = document.querySelector('.hero-subtitle');
     if (!heroSubtitle) return;
     
-    const originalText = heroSubtitle.textContent;
+    const getTextForLanguage = () => {
+        const key = heroSubtitle.getAttribute('data-text');
+        return translations[currentLanguage] && translations[currentLanguage][key] 
+            ? translations[currentLanguage][key] 
+            : heroSubtitle.textContent;
+    };
+    
+    const originalText = getTextForLanguage();
     heroSubtitle.textContent = '';
     heroSubtitle.style.borderRight = '2px solid var(--color-purple-500)';
     
@@ -618,49 +653,15 @@ function initializeTypingEffect() {
             charIndex++;
             setTimeout(typeText, 50);
         } else {
-            // Remover cursor después de terminar
             setTimeout(() => {
                 heroSubtitle.style.borderRight = 'none';
             }, 1000);
         }
     }
     
-    // Iniciar después de un delay
     setTimeout(typeText, 1500);
 }
 
-// Función para paralaje suave
-function initializeParallax() {
-    const parallaxElements = document.querySelectorAll('.hero::before, .hero::after');
-    
-    let ticking = false;
-    
-    function updateParallax() {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.3;
-        
-        parallaxElements.forEach(element => {
-            // Note: Directly manipulating pseudo-elements with JS isn't possible.
-            // This function assumes you have actual elements or a CSS variable approach.
-            // If these are pseudo-elements, this JS won't work directly.
-            // You might need to add a wrapper element or adjust CSS custom properties.
-            element.style.transform = `translateY(${rate}px)`;
-        });
-        
-        ticking = false;
-    }
-    
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateParallax);
-            ticking = true;
-        }
-    }
-    
-    window.addEventListener('scroll', requestTick);
-}
-
-// Función para crear tooltip dinámicos
 function initializeTooltips() {
     const techTags = document.querySelectorAll('.tech-tag');
     
@@ -668,7 +669,12 @@ function initializeTooltips() {
         tag.addEventListener('mouseenter', (e) => {
             const tooltip = document.createElement('div');
             tooltip.className = 'tooltip';
-            tooltip.textContent = `Tecnología: ${e.target.textContent}`;
+            
+            const tooltipText = currentLanguage === 'es' 
+                ? `Tecnología: ${e.target.textContent}`
+                : `Technology: ${e.target.textContent}`;
+            
+            tooltip.textContent = tooltipText;
             
             const tooltipStyles = `
                 position: absolute;
@@ -704,9 +710,7 @@ function initializeTooltips() {
     });
 }
 
-// Función para optimización de rendimiento
 function optimizePerformance() {
-    // Debounce para eventos de scroll y resize
     function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -719,7 +723,6 @@ function optimizePerformance() {
         };
     }
     
-    // Aplicar debounce a eventos costosos
     const debouncedResize = debounce(handleWindowResize, 150);
     const debouncedScroll = debounce(() => {
         updateActiveNavLink();
@@ -731,10 +734,7 @@ function optimizePerformance() {
     window.addEventListener('resize', debouncedResize);
     window.addEventListener('scroll', debouncedScroll);
     
-    // Lazy loading para imágenes
     initializeLazyLoading();
-    
-    // Reducir animaciones en dispositivos con batería baja
     if ('getBattery' in navigator) {
         navigator.getBattery().then(battery => {
             if (battery.level < 0.2) {
@@ -754,14 +754,11 @@ function optimizePerformance() {
     }
 }
 
-// Función para análisis de performance
 function trackPerformance() {
-    // Medir tiempo de carga
     window.addEventListener('load', () => {
         const loadTime = performance.now();
         console.log(`Portfolio cargado en: ${loadTime.toFixed(2)}ms`);
         
-        // Enviar métricas (aquí integrarías con tu servicio de analytics)
         if (typeof gtag !== 'undefined') {
             gtag('event', 'page_load_time', {
                 'value': Math.round(loadTime),
@@ -770,9 +767,8 @@ function trackPerformance() {
         }
     });
     
-    // Medir interacciones
     document.addEventListener('click', (e) => {
-        if (e.target.matches('.project-card, .filter-btn, .nav-link, .theme-toggle')) {
+        if (e.target.matches('.project-card, .filter-btn, .nav-link, .theme-toggle, .language-toggle')) {
             const elementType = e.target.className.split(' ')[0];
             console.log(`Interacción con: ${elementType}`);
             
@@ -786,23 +782,47 @@ function trackPerformance() {
     });
 }
 
-// Inicializar funciones adicionales cuando el documento esté listo
+function initializeAccessibility() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    function handleReducedMotion() {
+        if (prefersReducedMotion.matches) {
+            document.body.classList.add('reduced-motion');
+        } else {
+            document.body.classList.remove('reduced-motion');
+        }
+    }
+    
+    handleReducedMotion();
+    prefersReducedMotion.addEventListener('change', handleReducedMotion);
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-navigation');
+        }
+    });
+    
+    document.addEventListener('mousedown', () => {
+        document.body.classList.remove('keyboard-navigation');
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Funciones adicionales para mejorar la experiencia
     setTimeout(() => {
         createParticleAnimation();
         initializeTypingEffect();
-        initializeParallax();
         initializeTooltips();
         optimizePerformance();
         trackPerformance();
+        initializeAccessibility();
     }, 100);
 });
 
-// Exportar funciones para uso global
 window.portfolioFunctions = {
     handleFormSubmit,
     filterProjects,
     showNotification,
-    toggleTheme
+    toggleTheme,
+    toggleLanguage,
+    applyLanguage
 };

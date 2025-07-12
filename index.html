@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Ingeniero de Software & Físico Computacional</title>
+    <title>Portfolio - Software Engineer & Computational Physicist</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -12,7 +12,7 @@
     <div id="loading" class="loading-screen">
         <div class="loader">
             <div class="loader-ring"></div>
-            <p>Cargando Portfolio...</p>
+            <p data-text="loading">Loading Portfolio...</p>
         </div>
     </div>
 
@@ -23,9 +23,9 @@
                 <h2>Álvaro Vázquez</h2>
             </div>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link active">Inicio</a></li>
-                <li><a href="#about" class="nav-link">Sobre Mí</a></li>
-                <li><a href="#projects" class="nav-link">Proyectos</a></li>
+                <li><a href="#home" class="nav-link active" data-text="nav-home">Home</a></li>
+                <li><a href="#about" class="nav-link" data-text="nav-about">About Me</a></li>
+                <li><a href="#projects" class="nav-link" data-text="nav-projects">Projects</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -40,21 +40,12 @@
             <div class="hero-content">
                 <h1 class="hero-title">
                     <span class="title-line">Álvaro Vázquez</span>
-                    <span class="title-line">Ingeniería de Software y Física</span>
+                    <span class="title-line" data-text="hero-subtitle-line">Software Engineering & Physics</span>
                 </h1>
 
-                <p class="hero-subtitle">
-                    Especializado en machine y deep learning, visión por computador y simulaciones computacionales avanzadas
+                <p class="hero-subtitle" data-text="hero-description">
+                    Specialized in machine & deep learning, computer vision, and advanced computational simulations
                 </p>
-
-                <!-- <p class="hero-description">
-                    ...
-                </p> -->
-                
-                <!-- <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">Ver Proyectos</a>
-                    <a href="#contact" class="btn btn-secondary">Contactar</a>
-                </div> -->
                 
                 <div class="social-links">
                     <a href="https://github.com/SashVqz" class="social-link" aria-label="GitHub">
@@ -78,37 +69,40 @@
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Sobre Mí</h2>
-                <p class="section-subtitle">Apasión por la ciencia y la innovación tecnológica</p>
+                <h2 class="section-title" data-text="about-title">About Me</h2>
+                <p class="section-subtitle" data-text="about-subtitle">Passion for science and technological innovation</p>
             </div>
             <div class="about-content">
-                <div class="about-text-single"> <div class="about-card">
+                <div class="about-text-single"> 
+                    <div class="about-card">
                         <div class="card-icon">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <h3>Mi formación académica y como oriento mis proyectos</h3>
-                        <p>
-                            Mi base sólida la construí en la U-tad, donde me formo como ingenierío del software y físico computacional. Pero, sinceramente, es en mis proyectos personales donde realmente doy rienda suelta a mi pasión. Es mi laboratorio particular para perfeccionar mis habilidades, descubrir nuevas herramientas y lenguajes, y sumergirme en los temas que me apasionan y me inspiran.
+                        <h3 data-text="about-formation-title">My academic background and how I approach my projects</h3>
+                        <p data-text="about-formation-text">
+                            Built my solid foundation at U-tad, studying software engineering and computational physics. But real talk, it's in my personal projects where I truly let my passion run wild. That's my personal lab to sharpen my skills, discover new tools and languages, and dive deep into the topics that fire me up and inspire me.
                         </p>
                     </div>
                 </div>
-                <div class="about-specialization"> <h3>Áreas de Especialización</h3>
-                    <div class="specialization-grid"> <div class="about-card">
+                <div class="about-specialization"> 
+                    <h3 data-text="about-specialization-title">Areas of Specialization</h3>
+                    <div class="specialization-grid"> 
+                        <div class="about-card">
                             <div class="card-icon">
                                 <i class="fas fa-brain"></i>
                             </div>
-                            <h3>Inteligencia Artificial</h3>
-                            <p>
-                                Me especializo en machine learning, deep learning y visión por computador, y me entusiasma aplicar estos conocimientos en áreas con un impacto tangible. Mi trabajo en IA lo oriento especialmente hacia la medicina, el análisis de mercados bursátiles y la ciencia en general.
+                            <h3 data-text="about-ai-title">Artificial Intelligence</h3>
+                            <p data-text="about-ai-text">
+                                I specialize in machine learning, deep learning, and computer vision, and I get hyped applying this knowledge in areas with real impact. My AI work is especially focused on medicine, stock market analysis, and science in general.
                             </p>
                         </div>
                         <div class="about-card">
                             <div class="card-icon">
                                 <i class="fas fa-cube"></i>
                             </div>
-                            <h3>Programación gráfica y Simulación de sistemas físicos</h3>
-                            <p>
-                                Además, me apasiona la programación gráfica y la simulación de sistemas físicos. Me encanta construir desde aplicaciones de realidad virtual (VR) inmersivas hasta simulaciones físicas a bajo nivel utilizando por ejemplo CUDA (PhysX o DirectX), OpenGL o Vulkan. También me siento cómodo trabajando a un nivel más alto con herramientas como Unity o Houdini. Esta versatilidad me permite no solo visualizar lo que estudio en física, sino también crear simulaciones VFX.
+                            <h3 data-text="about-graphics-title">Graphics Programming</h3>
+                            <p data-text="about-graphics-text">
+                                Plus, I'm passionate about graphics programming and physical systems simulation. I love building everything from immersive VR applications to low-level physics simulations using CUDA (PhysX or DirectX), OpenGL, or Vulkan. I'm also comfortable working at a higher level with tools like Unity or Houdini. This versatility lets me not only visualize what I study in physics but also create VFX simulations.
                             </p>
                         </div>
                     </div>
@@ -117,22 +111,21 @@
         </div>
     </section>
 
-
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Proyectos</h2>
-                <p class="section-subtitle">Una selección de mis trabajos en diferentes áreas de especialización</p>
+                <h2 class="section-title" data-text="projects-title">Projects</h2>
+                <p class="section-subtitle" data-text="projects-subtitle">A selection of my work across different areas of specialization</p>
             </div>
             
             <!-- Project Categories Filter -->
             <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="graphics-vfx">Programación Gráfica y VFX</button>
-                <button class="filter-btn" data-filter="data-ai">Data Science y AI</button>
-                <button class="filter-btn" data-filter="algorithms-numerical">Algoritmia y Métodos Numéricos</button>
-                <button class="filter-btn" data-filter="web3-blockchain">Web3 y Blockchain</button>
+                <button class="filter-btn active" data-filter="all" data-text="filter-all">All</button>
+                <button class="filter-btn" data-filter="graphics-vfx" data-text="filter-graphics">Graphics Programming & VFX</button>
+                <button class="filter-btn" data-filter="data-ai" data-text="filter-ai">Data Science & AI</button>
+                <button class="filter-btn" data-filter="algorithms-numerical" data-text="filter-algorithms">Algorithms & Numerical Methods</button>
+                <button class="filter-btn" data-filter="web3-blockchain" data-text="filter-web3">Web3 & Blockchain</button>
             </div>
 
             <div class="projects-grid">
@@ -152,9 +145,9 @@
                         </div>
                     </div>
                     <div class="project-content">
-                        <div class="project-category-tag vfx">programación gráfica</div>
-                        <h3 class="project-title">Sistema de Partículas Avanzado</h3>
-                        <p class="project-description">Sistema de simulación de partículas para efectos visuales cinematográficos con renderizado en tiempo real.</p>
+                        <div class="project-category-tag vfx" data-text="project-cat-graphics">graphics programming</div>
+                        <h3 class="project-title" data-text="project1-title">Advanced Particle System</h3>
+                        <p class="project-description" data-text="project1-description">Particle simulation system for cinematic visual effects with real-time rendering.</p>
                         <div class="project-tech">
                             <span class="tech-tag">C++</span>
                             <span class="tech-tag">OpenGL</span>
@@ -179,9 +172,9 @@
                         </div>
                     </div>
                     <div class="project-content">
-                        <div class="project-category-tag simulation">Machine Learning</div>
-                        <h3 class="project-title">Simulador de Fluidos CFD</h3>
-                        <p class="project-description">Simulador de dinámica de fluidos computacional para análisis de comportamiento en sistemas complejos.</p>
+                        <div class="project-category-tag simulation" data-text="project-cat-ml">Machine Learning</div>
+                        <h3 class="project-title" data-text="project2-title">CFD Fluid Simulator</h3>
+                        <p class="project-description" data-text="project2-description">Computational fluid dynamics simulator for behavior analysis in complex systems.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">NumPy</span>
@@ -206,18 +199,14 @@
                         </div>
                     </div>
                     <div class="project-content">
-                        <div class="project-category-tag graphics">Algoritmia</div>
-                        <h3 class="project-title">Motor de Renderizado PBR</h3>
-                        <p class="project-description">Motor de renderizado basado en física con iluminación global y materiales realistas.</p>
+                        <div class="project-category-tag graphics" data-text="project-cat-algorithms">Algorithms</div>
+                        <h3 class="project-title" data-text="project3-title">PBR Rendering Engine</h3>
+                        <p class="project-description" data-text="project3-description">Physics-based rendering engine with global illumination and realistic materials.</p>
                         <div class="project-tech">
                             <span class="tech-tag">C++</span>
                         </div>
                     </div>
                 </div>
-                
-                <!-- ... -->
-
-
             </div>
         </div>
     </section>
@@ -226,7 +215,7 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Contacto</h2>
+                <h2 class="section-title" data-text="contact-title">Contact</h2>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
@@ -236,23 +225,23 @@
                         </div>
                         <h3>Email</h3>
                         <p>alvaro.vazquez.1716@gmail.com</p>
-                        <a href="mailto:alvaro.vazquez.1716@gmail.com" class="contact-link">Enviar email</a>
+                        <a href="mailto:alvaro.vazquez.1716@gmail.com" class="contact-link" data-text="contact-email-action">Send email</a>
                     </div>
                     <div class="contact-card">
                         <div class="contact-icon">
                             <i class="fab fa-linkedin"></i>
                         </div>
                         <h3>LinkedIn</h3>
-                        <p>Conecta conmigo</p>
-                        <a href="https://www.linkedin.com/in/alvarovqz/" class="contact-link">Ver perfil</a>
+                        <p data-text="contact-linkedin-text">Connect with me</p>
+                        <a href="https://www.linkedin.com/in/alvarovqz/" class="contact-link" data-text="contact-linkedin-action">View profile</a>
                     </div>
                     <div class="contact-card">
                         <div class="contact-icon">
                             <i class="fab fa-github"></i>
                         </div>
                         <h3>GitHub</h3>
-                        <p>Revisa mis proyectos</p>
-                        <a href="https://github.com/SashVqz" class="contact-link">Ver repositorios</a>
+                        <p data-text="contact-github-text">Check out my projects</p>
+                        <a href="https://github.com/SashVqz" class="contact-link" data-text="contact-github-action">View repositories</a>
                     </div>
                 </div>
             </div>
@@ -264,7 +253,7 @@
         <div class="container">
             <div class="footer-content">
                 <p>&copy; 2025 Álvaro Vázquez</p>
-                <p>Portfolio de proyectos personales</p>
+                <p data-text="footer-text">Personal projects portfolio</p>
             </div>
         </div>
     </footer>
@@ -274,6 +263,12 @@
         <i class="fas fa-moon"></i>
     </button>
 
-    <script src="script.js"></script></script>
+    <!-- Language Toggle -->
+    <button class="language-toggle" id="language-toggle" aria-label="Cambiar idioma">
+        <i class="fas fa-language"></i>
+        <span class="language-text">ES</span>
+    </button>
+
+    <script src="script.js"></script>
 </body>
 </html>

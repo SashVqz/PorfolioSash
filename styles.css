@@ -153,6 +153,52 @@ body {
     transform: translateY(-1px) scale(0.98);
 }
 
+/* Language Toggle */
+.language-toggle {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full);
+    border: none;
+    background: var(--gradient-primary);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-purple);
+    transition: all var(--transition-normal);
+    z-index: var(--z-fixed);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.language-toggle:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 40px rgba(168, 85, 247, 0.4);
+}
+
+.language-toggle:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.language-toggle .language-text {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    margin-top: -2px;
+}
+
+.language-toggle i {
+    font-size: 1.1rem;
+    margin-bottom: -2px;
+}
+
 /* Loading Screen */
 .loading-screen {
     position: fixed;
@@ -642,36 +688,32 @@ section {
     margin: 0 auto;
     position: relative;
     z-index: 2;
-    /* Updated: Use flexbox to stack the two main blocks */
     display: flex;
     flex-direction: column;
-    gap: var(--space-4xl); /* Space between the academic card and specialization cards */
+    gap: var(--space-4xl);
 }
 
-/* New class for the single academic card column */
 .about-text-single {
     display: grid;
-    grid-template-columns: 1fr; /* Ensures the first card takes a full row */
-    justify-items: center; /* Center the card horizontally */
+    grid-template-columns: 1fr;
+    justify-items: center;
 }
 
-/* New container for specializations */
 .about-specialization h3 {
     font-family: var(--font-display);
-    font-size: 2rem; /* Adjust as needed */
+    font-size: 2rem;
     font-weight: 600;
     color: var(--color-text-primary);
-    margin-bottom: var(--space-3xl); /* Space below the specialization heading */
+    margin-bottom: var(--space-3xl);
     text-align: center;
     transition: color var(--transition-theme);
 }
 
-/* New grid container for the two specialization cards */
 .specialization-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* 2 columns, minimum 400px each */
-    gap: var(--space-3xl); /* Gap between the two specialization cards */
-    justify-items: center; /* Center cards within the grid cells */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-3xl);
+    justify-items: center;
 }
 
 .about-card {
@@ -1023,7 +1065,6 @@ section {
 }
 
 .contact-content {
-    /* Ajustado para una sola columna, ya que el formulario no está presente */
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-4xl);
@@ -1034,7 +1075,6 @@ section {
 }
 
 .contact-info {
-    /* Auto-ajustar tarjetas en columnas, centrándolas */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-lg);
@@ -1168,12 +1208,16 @@ section {
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
     
-    .theme-toggle {
+    .theme-toggle, .language-toggle {
         bottom: 20px;
         right: 20px;
         width: 50px;
         height: 50px;
         font-size: 1.2rem;
+    }
+    
+    .language-toggle {
+        bottom: 80px;
     }
 }
 
@@ -1236,11 +1280,11 @@ section {
     }
     
     .about-text {
-        grid-template-columns: 1fr; /* Original about-text grid, now about-text-single is specific */
+        grid-template-columns: 1fr;
     }
 
-    .specialization-grid { /* Added for responsiveness of new grid */
-        grid-template-columns: 1fr; 
+    .specialization-grid {
+        grid-template-columns: 1fr;
     }
     
     .project-filters {
@@ -1258,11 +1302,26 @@ section {
     }
 
     .contact-info {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
     }
 
     .contact-card {
-        padding: var(--space-xl); 
+        padding: var(--space-xl);
+    }
+    
+    .language-toggle {
+        bottom: 70px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .language-toggle .language-text {
+        font-size: 0.6rem;
+    }
+    
+    .language-toggle i {
+        font-size: 1rem;
     }
 }
 
@@ -1288,7 +1347,7 @@ section {
     }
     
     .about-card,
-    .contact-card { /* contact-form eliminado */
+    .contact-card {
         padding: var(--space-xl);
     }
     
@@ -1312,6 +1371,21 @@ section {
         font-size: 1.1rem;
         bottom: 15px;
         right: 15px;
+    }
+    
+    .language-toggle {
+        width: 40px;
+        height: 40px;
+        bottom: 65px;
+        right: 15px;
+    }
+    
+    .language-toggle .language-text {
+        font-size: 0.55rem;
+    }
+    
+    .language-toggle i {
+        font-size: 0.9rem;
     }
 }
 
@@ -1460,7 +1534,8 @@ section {
 .btn:focus,
 .nav-link:focus,
 .filter-btn:focus,
-.theme-toggle:focus {
+.theme-toggle:focus,
+.language-toggle:focus {
     outline: 2px solid var(--color-purple-500);
     outline-offset: 2px;
 }
@@ -1475,7 +1550,8 @@ section {
         scroll-behavior: auto !important;
     }
     
-    .theme-toggle {
+    .theme-toggle,
+    .language-toggle {
         transition: none !important;
     }
 }
